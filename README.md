@@ -50,7 +50,7 @@ export const useWeather = (latitude: number, longitude: number) => {
 ## Features
 
 - The current weather conditions
-- hourly forecast
+- 48-hour forecast
 - 8-day forecast
 
 
