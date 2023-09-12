@@ -1,6 +1,6 @@
 import {Hourly} from "../state";
 import {Paper, Stack} from "@mui/material";
-import {OPEN_WEATHER_MAP_ICON_URL} from "../../../App.tsx";
+import {WEATHER_ICON_URL} from "../../../App.tsx";
 import * as dayjs from "dayjs";
 
 export const HourlyForecastView = (
@@ -25,7 +25,7 @@ export const HourlyForecastView = (
                                 <Stack key={index}>
                                     <span>{dayjs(d).format("H")}</span>
                                     <img style={{width: 30}}
-                                         src={`${OPEN_WEATHER_MAP_ICON_URL}/${record.weather[0].icon}.png`}/>
+                                         src={`${WEATHER_ICON_URL}/${record.weather[0].icon}.png`}/>
                                     <span>{Math.round(record.temp)}&deg;</span>
                                 </Stack>
                             );

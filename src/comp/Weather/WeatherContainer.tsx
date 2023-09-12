@@ -1,4 +1,4 @@
-import {useWeather} from "./state";
+import {Coord, useWeather} from "./state";
 import {useEffect, useState} from "react";
 import {
     CurrentWeatherView,
@@ -18,21 +18,25 @@ import {Grid} from "@mui/material";
 
 const WeatherContainer = () => {
     //
-    const [lat, setLat] = useState<number>(41.2646);
-    const [long, setLong] = useState<number>(69.2163);
+    const [coord, setCoord] = useState<Coord>({
+        lat: 41.2646,
+        lon: 69.2163,
+    });
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(function (position) {
-            setLat(position.coords.latitude);
-            setLong(position.coords.longitude);
+            setCoord({
+                lat: position.coords.latitude,
+                lon: position.coords.longitude,
+            });
         });
-    }, [lat, long]);
+    }, [coord]);
 
     const {
         currentWeatherData,
         hourlyForecastRecords,
         dailyForecastRecords,
-    } = useWeather(lat, long);
+    } = useWeather(coord);
 
     return (
         <>

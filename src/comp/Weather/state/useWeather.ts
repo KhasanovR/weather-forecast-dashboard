@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {OPEN_WEATHER_MAP_API_KEY, OPEN_WEATHER_MAP_API_URL} from "../../../App";
+import {WEATHER_API_KEY, WEATHER_API_URL} from "../../../App";
 
 export interface OneCallResponse {
     lat: number
@@ -41,16 +41,12 @@ export interface Snow {
     "1h": number
     "3h"?: number
 }
+
 export interface Weather {
     id: number
     main: string
     description: string
     icon: string
-}
-
-export interface Minutely {
-    dt: number
-    precipitation: number
 }
 
 export interface Hourly {
@@ -96,15 +92,6 @@ export interface Daily {
     weather: Weather[]
 }
 
-export interface Alert {
-    sender_name: string
-    event: string
-    start: number
-    end: number
-    description: string
-    tags: string[]
-}
-
 export interface Temp {
     morn: number
     day: number
@@ -121,22 +108,24 @@ export interface FeelsLike {
     night: number
 }
 
-export const useWeather = (latitude: number, longitude: number) => {
+export interface Coord {
+    lat: number
+    lon: number
+}
+
+export const useWeather = (coord: Coord) => {
     //
     const [oneCallData, setOneCallData] = useState<OneCallResponse>()
 
     useEffect(() => {
         //
-        axios
-            .get(`${OPEN_WEATHER_MAP_API_URL}/onecall?lat=41.2646&lon=69.2163&units=metric&appid=${OPEN_WEATHER_MAP_API_KEY}`)
-            .then(response => {
-                setOneCallData(response.data);
-            });
-    }, [latitude, longitude]);
+        const url = `${WEATHER_API_URL}/onecall?lat=${coord.lat}&lon=${coord.lon}&units=metric&appid=${WEATHER_API_KEY}`;
+        axios.get(url).then(response => setOneCallData(response.data));
+    }, [coord]);
 
     return {
         currentWeatherData: oneCallData?.current,
-        hourlyForecastRecords: oneCallData?.hourly       || [],
+        hourlyForecastRecords: oneCallData?.hourly || [],
         dailyForecastRecords: oneCallData?.daily || [],
     }
 }

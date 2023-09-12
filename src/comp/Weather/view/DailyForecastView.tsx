@@ -2,7 +2,7 @@ import {Daily} from "../state";
 import {Grid, Paper, Typography} from "@mui/material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import * as dayjs from "dayjs";
-import {OPEN_WEATHER_MAP_ICON_URL} from "../../../App.tsx";
+import {WEATHER_ICON_URL} from "../../../App.tsx";
 
 export const DailyForecastView = (
     {
@@ -33,7 +33,7 @@ export const DailyForecastView = (
                                     </Grid>
                                     <Grid item xs={3}>
                                         <img style={{width: 30}}
-                                             src={`${OPEN_WEATHER_MAP_ICON_URL}/${record.weather[0].icon}.png`}/>
+                                             src={`${WEATHER_ICON_URL}/${record.weather[0].icon}.png`}/>
                                     </Grid>
                                     <Grid item xs={3}>
                                         <span>L: {record.temp.min}&deg;</span>
