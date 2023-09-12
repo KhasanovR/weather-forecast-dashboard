@@ -16,6 +16,7 @@ Get the current weather and prediction for the following eight days.The UV Index
 
 ## Preview
 
+![image](https://github.com/KhasanovR/weather-forecast-dashboard/assets/22652133/4f9417e3-aa22-4185-bd3f-da73edcb94c7)
 
 
 ## Code
@@ -49,7 +50,7 @@ export const useWeather = (latitude: number, longitude: number) => {
 ## Features
 
 - The current weather conditions
-- hourly forecast
+- 48-hour forecast
 - 8-day forecast
 
 
